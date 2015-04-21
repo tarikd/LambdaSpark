@@ -7,17 +7,6 @@ import matplotlib.pyplot as plt
 # To send messages synchronously
 kafka = KafkaClient("localhost:9092")
 
-def getKafkaClustersCenters():
-
-	consumer = SimpleConsumer(kafka, group="spark-streaming-consumer", topic="clusters_centers", auto_commit=False)
-	
-	allMessages = []
-	for message in consumer:
-		allMessages.append(message.message.value)
-
-	# kafka.close()
-	return allMessages
-
 def multiProcessKafkaConsumer():
 
 	consumer = MultiProcessConsumer(kafka, group="spark-streaming-consumer", topic="clusters_centers", num_procs=2)
@@ -55,10 +44,6 @@ def clean():
 		print clean
 
 if __name__ == '__main__':
-	# getKafkaClustersCenters()
-	
-	# multiProcessKafkaConsumer()
-
 	clean()
 
 

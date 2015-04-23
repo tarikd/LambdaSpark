@@ -27,6 +27,9 @@ UnknownGeo = "unknown"
 Geos = ["NY", "CA", "FL", "MI", "HI", UnknownGeo]
 
 
+BatchDuration = 10
+
+
 def randomLog():
 	i = 0
 	while True:
@@ -51,7 +54,7 @@ def sparkStream():
 	# Create a local StreamingContext with four working thread and batch
 	# interval of 10 second
 	sc = SparkContext("local[4]", "adnetwork_stream")
-	ssc = StreamingContext(sc, 10) # 10 seconds batch
+	ssc = StreamingContext(sc, BatchDuration) # 10 seconds batch
 
 	zkQuorum = "localhost:2181"
 	groupId = "spark-streaming-consumer"
